@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wet Gulch</title>
+  </head>
+  <body>
+    <header>
+      <h1>Wet Gulch</h1>
+      <nav>
+        <ul>
+          <li><a href="#General-store">General store</a></li>
+          <li><a href="#Black-smith">Black smith</a></li>
+          <li><a href="#Barber-shop">Barber shop</a></li>
+          <li><a href="#Postal-shop">Postal shop</a></li>
+          <li><a href="#Sheriff's-office">Sheriff's office</a></li>
+          <li><a href="#Bank">Bank</a></li>
+
+        </ul>
+      </nav>
+      <h2 class="js-title">General Store</h2>
+    </header>
+    <main class="js-content"></main>
+    <template id="Bank">
+      <img src="./bank.svg" alt="">
+    </template>
+    <script>
+      window.addEventListener("hashchange", changePage);
+      var pageTitle = document.querySelector(".js-title");
+      var pageContent = document.querySelector(".js-content");
+      function changePage(event)
+      {
+        pageTitle.innerHTML = getTitle(
+          {
+          "#General-store":"General store",
+          "#Black-smith":"Black smith",
+          "#Barber-shop": "Barber shop",
+          "#Postal-shop": "Postal shop",
+          "#Sheriff's-office": "Sheriff's office",
+          "#Bank": "Bank"
+        }, location.hash);
+
+        pageContent.innerHTML = getPage(location.hash);
+      }
+
+      function getTitle(titles, hash)
+      {
+        return titles[hash];
+      }
+
+      function getPage(hash)
+      {
+        var template = document.querySelector(hash);
+        var page = document.importNode(template, true);
+        return page;
+      }
+    </script>
+  </body>
+</html>
